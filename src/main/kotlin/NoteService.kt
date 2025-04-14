@@ -14,6 +14,17 @@ class NoteService(private val noteRepository: NoteRepository) {
         return noteRepository.getAllNotes()
     }
 
+    fun updateNote(id: String, title: String, content: String): Boolean {
+        val note = noteRepository.getNoteById(id)
+        note?.let {
+            it.title = title
+            it.content = content
+            noteRepository.updateNote(it)
+            return true
+        }
+        return false
+    }
+
     fun deleteNote(id: String): Boolean {
         return noteRepository.getNoteById(id)?.let {
             noteRepository.deleteNote(id)
@@ -64,6 +75,19 @@ fun main() {
                 }
             }
             4 -> {
+                println("Введите ID заметки для обновления:")
+                val id = readLine() ?: ""
+                println("Введите новый заголовок:")
+                val title = readLine() ?: ""
+                println("Введите новое содержание:")
+                val content = readLine() ?: ""
+                if (noteService.updateNote(id, title, content)) {
+                    println("Заметка обновлена.")
+                } else {
+                    println("Заметка не найдена.")
+                }
+            }
+            5 -> {
                 println("Введите ID заметки для удаления:")
                 val id = readLine() ?: ""
                 if (noteService.deleteNote(id)) {
@@ -72,7 +96,7 @@ fun main() {
                     println("Заметка не найдена.")
                 }
             }
-            5 -> {
+            6 -> {
                 println("Выход из программы.")
                 return
             }

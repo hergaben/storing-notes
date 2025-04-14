@@ -22,6 +22,15 @@ class NoteRepository(private val filePath: String) {
         return notes.toList()
     }
 
+    fun updateNote(note: Note) {
+        val existingNote = notes.find { it.id == note.id }
+        existingNote?.let {
+            it.title = note.title
+            it.content = note.content
+            saveNotes()
+        }
+    }
+
     fun deleteNote(id: String) {
         notes.removeIf { it.id == id }
         saveNotes()
