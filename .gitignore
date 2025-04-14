@@ -5,6 +5,7 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
+.idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
@@ -15,6 +16,14 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+notes.json
+gradle
+build.gradle.kts
+gradle.properties
+gradlew
+gradlew.bat
+settings.gradle.kts
+
 
 ### Eclipse ###
 .apt_generated
